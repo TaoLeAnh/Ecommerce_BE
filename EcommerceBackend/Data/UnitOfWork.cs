@@ -10,6 +10,9 @@ namespace EcommerceBackend.Data
         public IGenericRepository<Product> Products { get; private set; }
         public IGenericRepository<Category> Categories { get; private set; }
         public IGenericRepository<Order> Orders { get; private set; }
+        public IGenericRepository<Review> Reviews { get; private set; }
+        public IGenericRepository<OrderDetail> OrderDetails { get; private set; }
+        public IGenericRepository<Payment> Payments { get; private set; }
 
         public UnitOfWork(ApplicationDbContext context)
         {
@@ -18,11 +21,14 @@ namespace EcommerceBackend.Data
             Products = new GenericRepository<Product>(context);
             Categories = new GenericRepository<Category>(context);
             Orders = new GenericRepository<Order>(context);
+            Reviews = new GenericRepository<Review>(context);
+            OrderDetails = new GenericRepository<OrderDetail>(context);
+            Payments = new GenericRepository<Payment>(context);
         }
 
-        public async Task<int> CompleteAsync()
+        public async Task CompleteAsync()
         {
-            return await _context.SaveChangesAsync();
+            await _context.SaveChangesAsync();
         }
 
         public void Dispose()
