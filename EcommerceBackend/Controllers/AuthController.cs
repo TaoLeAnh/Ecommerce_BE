@@ -5,7 +5,7 @@ using EcommerceBackend.Models;
 namespace EcommerceBackend.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("api/auth")]
     public class AuthController : ControllerBase
     {
         private readonly ITokenService _tokenService;

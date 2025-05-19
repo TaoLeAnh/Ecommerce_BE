@@ -40,9 +40,6 @@ D:\Ecommerce_BE\EcommerceBackend\obj\Debug\net8.0\EcommerceBackend.csproj.CoreCo
 D:\Ecommerce_BE\EcommerceBackend\obj\Debug\net8.0\EcommerceBackend.MvcApplicationPartsAssemblyInfo.cs
 D:\Ecommerce_BE\EcommerceBackend\obj\Debug\net8.0\EcommerceBackend.MvcApplicationPartsAssemblyInfo.cache
 D:\Ecommerce_BE\EcommerceBackend\obj\Debug\net8.0\EcommerceBackend.sourcelink.json
-D:\Ecommerce_BE\EcommerceBackend\obj\Debug\net8.0\EcommerceBackend.dll
-D:\Ecommerce_BE\EcommerceBackend\obj\Debug\net8.0\refint\EcommerceBackend.dll
-D:\Ecommerce_BE\EcommerceBackend\obj\Debug\net8.0\EcommerceBackend.pdb
 D:\Ecommerce_BE\EcommerceBackend\bin\Debug\net8.0\appsettings.Development.json
 D:\Ecommerce_BE\EcommerceBackend\bin\Debug\net8.0\appsettings.json
 D:\Ecommerce_BE\EcommerceBackend\bin\Debug\net8.0\EcommerceBackend.exe
@@ -53,6 +50,7 @@ D:\Ecommerce_BE\EcommerceBackend\bin\Debug\net8.0\EcommerceBackend.pdb
 D:\Ecommerce_BE\EcommerceBackend\bin\Debug\net8.0\Azure.Core.dll
 D:\Ecommerce_BE\EcommerceBackend\bin\Debug\net8.0\Azure.Identity.dll
 D:\Ecommerce_BE\EcommerceBackend\bin\Debug\net8.0\Humanizer.dll
+D:\Ecommerce_BE\EcommerceBackend\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
 D:\Ecommerce_BE\EcommerceBackend\bin\Debug\net8.0\Microsoft.AspNetCore.OpenApi.dll
 D:\Ecommerce_BE\EcommerceBackend\bin\Debug\net8.0\Microsoft.Bcl.AsyncInterfaces.dll
 D:\Ecommerce_BE\EcommerceBackend\bin\Debug\net8.0\Microsoft.CodeAnalysis.dll
@@ -175,6 +173,8 @@ D:\Ecommerce_BE\EcommerceBackend\obj\Debug\net8.0\staticwebassets\msbuild.buildT
 D:\Ecommerce_BE\EcommerceBackend\obj\Debug\net8.0\staticwebassets.pack.json
 D:\Ecommerce_BE\EcommerceBackend\obj\Debug\net8.0\scopedcss\bundle\EcommerceBackend.styles.css
 D:\Ecommerce_BE\EcommerceBackend\obj\Debug\net8.0\Ecommerc.05309025.Up2Date
+D:\Ecommerce_BE\EcommerceBackend\obj\Debug\net8.0\EcommerceBackend.dll
+D:\Ecommerce_BE\EcommerceBackend\obj\Debug\net8.0\refint\EcommerceBackend.dll
+D:\Ecommerce_BE\EcommerceBackend\obj\Debug\net8.0\EcommerceBackend.pdb
 D:\Ecommerce_BE\EcommerceBackend\obj\Debug\net8.0\EcommerceBackend.genruntimeconfig.cache
 D:\Ecommerce_BE\EcommerceBackend\obj\Debug\net8.0\ref\EcommerceBackend.dll
-D:\Ecommerce_BE\EcommerceBackend\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll

@@ -44,5 +44,28 @@ namespace EcommerceBackend.Services
                 await _unitOfWork.CompleteAsync();
             }
         }
+
+        public async Task<Order> CreateOrderWithProducts(List<Product> products,String userId)
+        {
+            var order = new Order
+            {
+                UserId = int.Parse(userId),
+                TotalAmount = products.Sum(p => p.Price),
+                OrderDetails = products.Select(p => new OrderDetail
+                {
+                    ProductId = p.ProductId,
+                    Quantity = p.Quantity, 
+                    Price = p.Price,
+                    CreatedAt = DateTime.UtcNow,
+                }).ToList(),
+                OrderStatus = "PENDING",
+                CreatedAt = DateTime.UtcNow,
+    
+            };
+
+            await _unitOfWork.Orders.AddAsync(order);
+            await _unitOfWork.CompleteAsync();
+            return order;
+        }
     }
 }

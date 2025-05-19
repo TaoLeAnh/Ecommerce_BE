@@ -12,6 +12,9 @@ namespace EcommerceBackend.Models
         public int Stock { get; set; }
         public string ImageUrl { get; set; }
         public int CategoryId { get; set; }
+
+        public int Quantity { get; set; }
+        public string Status { get; set; }
         public DateTime CreatedAt { get; set; }
 
         // Navigation properties
