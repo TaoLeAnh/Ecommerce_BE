@@ -1,5 +1,6 @@
 using EcommerceBackend.Data;
 using EcommerceBackend.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace EcommerceBackend.Services
 {
@@ -15,6 +16,12 @@ namespace EcommerceBackend.Services
         public async Task<IEnumerable<Review>> GetAllReviews()
         {
             return await _unitOfWork.Reviews.GetAllAsync();
+           
+        }
+
+        public async Task<IEnumerable<Review>> GetReviewsByProduct(int productId)
+        {
+            return await _unitOfWork.Reviews.FindAsync(r => r.ProductId == productId);
         }
 
         public async Task<Review> GetReviewById(int id)
@@ -37,7 +44,7 @@ namespace EcommerceBackend.Services
 
         public async Task DeleteReview(int id)
         {
-            var review = await _unitOfWork.Reviews.GetByIdAsync(id);
+            var review = await GetReviewById(id);
             if (review != null)
             {
                 _unitOfWork.Reviews.Remove(review);
