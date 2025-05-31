@@ -29,7 +29,7 @@ namespace EcommerceBackend.Controllers
 
             // Generate token
             var token = _tokenService.GenerateToken(user.UserId.ToString(), user.Role);
-            return Ok(new { Token = token });
+            return Ok(new { Token = token , Users = new { user.UserId, user.Email, user.Role } });
         }
     }
 
