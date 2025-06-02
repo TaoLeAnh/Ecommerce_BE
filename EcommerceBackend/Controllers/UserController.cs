@@ -33,13 +33,6 @@ namespace EcommerceBackend.Controllers
             return Ok(user);
         }
 
-        [HttpPost]
-        public async Task<ActionResult<User>> CreateUser(User user)
-        {
-            var createdUser = await _userService.CreateUser(user);
-            return CreatedAtAction(nameof(GetUser), new { id = createdUser.UserId }, createdUser);
-        }
-
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateUser(int id, User user)
         {

@@ -31,11 +31,52 @@ namespace EcommerceBackend.Controllers
             var token = _tokenService.GenerateToken(user.UserId.ToString(), user.Role);
             return Ok(new { Token = token , Users = new { user.UserId, user.Email, user.Role } });
         }
+
+        [HttpPost("register")]
+        public async Task<IActionResult> Register([FromBody] RegisterRequest request)
+        {
+            // Check if user already exists
+            var existingUser = await _userService.GetUserByUsernameAsync(request.Email);
+            if (existingUser != null)
+            {
+                return BadRequest("Username already exists");
+            }
+
+            // Create new user
+            var user = new User
+            {
+                Email = request.Email,
+                PasswordHash = request.Password,
+                Address = string.Empty, // Provide default empty string if null
+                Role = "User",
+                FullName = string.Empty, // Provide default empty string if null
+                Phone = string.Empty, // Provide default empty string if null
+                CreatedAt = DateTime.UtcNow
+            };
+
+            await _userService.CreateUserAsync(user);
+
+            // Generate token for auto login
+            var token = _tokenService.GenerateToken(user.UserId.ToString(), user.Role);
+
+            return Ok(new 
+            { 
+                Token = token,
+                User = new { user.UserId, user.Email, user.Role },
+                Message = "Registration successful" 
+            });
+        }
     }
 
     public class LoginRequest
     {
         public string Username { get; set; }
         public string Password { get; set; }
+    }
+
+    public class RegisterRequest 
+    {
+        public string Password { get; set; }
+        public string Email { get; set; }
     }
 }
