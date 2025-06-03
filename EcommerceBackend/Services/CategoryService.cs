@@ -1,50 +1,57 @@
-public class CategoryService : ICategoryService
+using EcommerceBackend.Models;
+using Microsoft.EntityFrameworkCore;
+using EcommerceBackend.Data;
+
+namespace EcommerceBackend.Services
 {
-    private readonly IGenericRepository<Category> _categoryRepository;
-
-    public CategoryService(IGenericRepository<Category> categoryRepository)
+    public class CategoryService : ICategoryService
     {
-        _categoryRepository = categoryRepository;
-    }
+        private readonly UnitOfWork _unitOfWork;
 
-    public async Task<IEnumerable<Category>> GetAllAsync()
-    {
-        return await _categoryRepository.GetAllAsync();
-    }
+        public CategoryService(UnitOfWork unitOfWork)
+        {
+            _unitOfWork = unitOfWork;
+        }
 
-    public async Task<Category> GetByIdAsync(int id)
-    {
-        return await _categoryRepository.GetByIdAsync(id);
-    }
+        public async Task<IEnumerable<Category>> GetAllAsync()
+        {
+            return await _unitOfWork.Categories.GetAllAsync();
+        }
 
-    public async Task<Category> CreateAsync(Category category)
-    {
-        await _categoryRepository.AddAsync(category);
-        await _categoryRepository._context.SaveChangesAsync();
-        return category;
-    }
+        public async Task<Category> GetByIdAsync(int id)
+        {
+            return await _unitOfWork.Categories.GetByIdAsync(id);
+        }
 
-    public async Task<Category> UpdateAsync(int id, Category category)
-    {
-        var existing = await _categoryRepository.GetByIdAsync(id);
-        if (existing == null) return null;
+        public async Task<Category> CreateAsync(Category category)
+        {
+            await _unitOfWork.Categories.AddAsync(category);
+            await _unitOfWork.CompleteAsync();
+            return category;
+        }
 
-        existing.Name = category.Name;
-        existing.Description = category.Description;
-        existing.CreatedAt = category.CreatedAt;
+        public async Task<Category> UpdateAsync(int id, Category category)
+        {
+            var existing = await _unitOfWork.Categories.GetByIdAsync(id);
+            if (existing == null) return null;
 
-        _categoryRepository.Update(existing);
-        await _categoryRepository._context.SaveChangesAsync();
-        return existing;
-    }
+            existing.Name = category.Name;
+            existing.Description = category.Description;
+            existing.CreatedAt = category.CreatedAt;
 
-    public async Task<bool> DeleteAsync(int id)
-    {
-        var category = await _categoryRepository.GetByIdAsync(id);
-        if (category == null) return false;
+            _unitOfWork.Categories.Update(existing);
+            await _unitOfWork.CompleteAsync();
+            return existing;
+        }
 
-        _categoryRepository.Remove(category);
-        await _categoryRepository._context.SaveChangesAsync();
-        return true;
+        public async Task<bool> DeleteAsync(int id)
+        {
+            var category = await _unitOfWork.Categories.GetByIdAsync(id);
+            if (category == null) return false;
+
+            _unitOfWork.Categories.Remove(category);
+            await _unitOfWork.CompleteAsync();
+            return true;
+        }
     }
 }

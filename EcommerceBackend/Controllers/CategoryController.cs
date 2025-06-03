@@ -1,4 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
+using EcommerceBackend.Services;
+using EcommerceBackend.Models;
 
 [ApiController]
 [Route("api/[controller]")]

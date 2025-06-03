@@ -1,3 +1,5 @@
+using EcommerceBackend.Models;
+
 public interface ICategoryService
 {
     Task<IEnumerable<Category>> GetAllAsync();
