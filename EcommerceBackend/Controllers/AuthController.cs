@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using EcommerceBackend.Services;
 using EcommerceBackend.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace EcommerceBackend.Controllers
 {
@@ -18,6 +19,7 @@ namespace EcommerceBackend.Controllers
         }
 
         [HttpPost("login")]
+        [AllowAnonymous]
         public async Task<IActionResult> Login([FromBody] LoginRequest request)
         {
             // Validate user credentials
@@ -33,6 +35,7 @@ namespace EcommerceBackend.Controllers
         }
 
         [HttpPost("register")]
+        [AllowAnonymous]
         public async Task<IActionResult> Register([FromBody] RegisterRequest request)
         {
             // Check if user already exists
@@ -47,10 +50,10 @@ namespace EcommerceBackend.Controllers
             {
                 Email = request.Email,
                 PasswordHash = request.Password,
-                Address = string.Empty, // Provide default empty string if null
+                Address = string.Empty,
                 Role = "User",
-                FullName = string.Empty, // Provide default empty string if null
-                Phone = string.Empty, // Provide default empty string if null
+                FullName = string.Empty,
+                Phone = string.Empty,
                 CreatedAt = DateTime.UtcNow
             };
 
