@@ -18,5 +18,6 @@ namespace EcommerceBackend.Data
         public DbSet<Payment> Payments { get; set; }
         public DbSet<Review> Reviews { get; set; }
         public DbSet<CartItem> CartItems { get; set; }
+        public DbSet<Category> Categories { get; set; }
     }
 }
