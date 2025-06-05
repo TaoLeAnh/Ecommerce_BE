@@ -4198,19 +4198,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Admin\\.nuget\\packages\\": {}
+    "C:\\Users\\leanh\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Ecommerce_BE\\EcommerceBackend\\EcommerceBackend.csproj",
+      "projectUniqueName": "C:\\Ecommerce_BE\\Ecommerce_BE\\EcommerceBackend\\EcommerceBackend.csproj",
       "projectName": "EcommerceBackend",
-      "projectPath": "D:\\Ecommerce_BE\\EcommerceBackend\\EcommerceBackend.csproj",
-      "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-      "outputPath": "D:\\Ecommerce_BE\\EcommerceBackend\\obj\\",
+      "projectPath": "C:\\Ecommerce_BE\\Ecommerce_BE\\EcommerceBackend\\EcommerceBackend.csproj",
+      "packagesPath": "C:\\Users\\leanh\\.nuget\\packages\\",
+      "outputPath": "C:\\Ecommerce_BE\\Ecommerce_BE\\EcommerceBackend\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\leanh\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net8.0"
@@ -4289,7 +4289,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.409/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.408/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
