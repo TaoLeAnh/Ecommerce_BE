@@ -1,8 +1,14 @@
 {
   "version": 2,
+<<<<<<< HEAD
   "dgSpecHash": "UisV0Rdmfgk=",
   "success": true,
   "projectFilePath": "C:\\Ecommerce_BE\\Ecommerce_BE\\EcommerceBackend\\EcommerceBackend.csproj",
+=======
+  "dgSpecHash": "9EATehHwKTA=",
+  "success": true,
+  "projectFilePath": "d:\\Ecommerce_BE_FULL (1)\\EcommerceBackend\\EcommerceBackend.csproj",
+>>>>>>> 694753f4bc4b77d70d32e29868267471c483d283
   "expectedPackageFiles": [
     "C:\\Users\\leanh\\.nuget\\packages\\azure.core\\1.38.0\\azure.core.1.38.0.nupkg.sha512",
     "C:\\Users\\leanh\\.nuget\\packages\\azure.identity\\1.11.4\\azure.identity.1.11.4.nupkg.sha512",

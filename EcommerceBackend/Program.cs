@@ -42,6 +42,20 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
         };
     });
 
+// Add CORS policy
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowSpecificOrigin",
+        builder =>
+        {
+            builder
+                .WithOrigins("http://localhost:3000")
+                .AllowAnyMethod()
+                .AllowAnyHeader()
+                .AllowCredentials();
+        });
+});
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -56,6 +70,9 @@ app.UseHttpsRedirection();
 // Enable authentication and authorization
 app.UseAuthentication();
 app.UseAuthorization();
+
+// Enable CORS
+app.UseCors("AllowSpecificOrigin");
 
 // Map controllers
 app.MapControllers();

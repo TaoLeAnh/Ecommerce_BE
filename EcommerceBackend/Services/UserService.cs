@@ -22,11 +22,16 @@ namespace EcommerceBackend.Services
             return await _unitOfWork.Users.GetByIdAsync(id);
         }
 
-        public async Task<User> CreateUser(User user)
+        public async Task<User> GetUserByUsernameAsync(string username)
+        {
+            var users = await _unitOfWork.Users.FindAsync(u => u.Email == username);
+            return users.FirstOrDefault();
+        }
+
+        public async Task CreateUserAsync(User user)
         {
             await _unitOfWork.Users.AddAsync(user);
             await _unitOfWork.CompleteAsync();
-            return user;
         }
 
         public async Task UpdateUser(User user)
