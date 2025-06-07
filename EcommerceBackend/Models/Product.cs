@@ -18,9 +18,10 @@ namespace EcommerceBackend.Models
         public DateTime CreatedAt { get; set; }
 
         // Navigation properties
-        public virtual Category Category { get; set; }
-        public virtual ICollection<OrderDetail> OrderDetails { get; set; }
-        public virtual ICollection<Review> Reviews { get; set; }
-        public virtual ICollection<CartItem> CartItems { get; set; }
+        public virtual Category? Category { get; set; }
+        public virtual ICollection<OrderDetail>? OrderDetails { get; set; }
+        public virtual ICollection<Review>? Reviews { get; set; }
+        public virtual ICollection<CartItem>? CartItems { get; set; }
+        
     }
 }

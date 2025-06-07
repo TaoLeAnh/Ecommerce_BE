@@ -11,7 +11,7 @@ namespace EcommerceBackend.Models
         public DateTime UpdatedAt { get; set; } // Add this property
         
         // Navigation properties
-        public User User { get; set; }
-        public Product Product { get; set; }
+        public User? User { get; set; }
+        public Product? Product { get; set; }
     }
 }

@@ -14,6 +14,6 @@ namespace EcommerceBackend.Models
         public DateTime PaidAt { get; set; }
 
         // Navigation properties
-        public virtual Order Order { get; set; }
+        public virtual Order? Order { get; set; }
     }
 }
