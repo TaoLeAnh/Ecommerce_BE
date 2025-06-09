@@ -22,6 +22,7 @@ builder.Services.AddScoped<IPaymentService, PaymentService>();
 builder.Services.AddScoped<IReviewService, ReviewService>();
 // Add this line to register controllers
 builder.Services.AddControllers();
+builder.WebHost.UseWebRoot("wwwroot");
 
 // Configure JWT Authentication
 var jwtKey = builder.Configuration["Jwt:Key"];
@@ -42,21 +43,9 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
         };
     });
 
-// Add CORS policy
-builder.Services.AddCors(options =>
-{
-    options.AddPolicy("AllowSpecificOrigin",
-        builder =>
-        {
-            builder
-                .WithOrigins("http://localhost:3000")
-                .AllowAnyMethod()
-                .AllowAnyHeader()
-                .AllowCredentials();
-        });
-});
-
 var app = builder.Build();
+
+app.UseStaticFiles();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -70,9 +59,6 @@ app.UseHttpsRedirection();
 // Enable authentication and authorization
 app.UseAuthentication();
 app.UseAuthorization();
-
-// Enable CORS
-app.UseCors("AllowSpecificOrigin");
 
 // Map controllers
 app.MapControllers();

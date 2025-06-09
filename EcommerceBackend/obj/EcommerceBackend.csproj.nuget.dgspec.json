@@ -1,7 +1,6 @@
 {
   "format": 1,
   "restore": {
-<<<<<<< HEAD
     "C:\\Ecommerce_BE\\Ecommerce_BE\\EcommerceBackend\\EcommerceBackend.csproj": {}
   },
   "projects": {
@@ -13,19 +12,6 @@
         "projectPath": "C:\\Ecommerce_BE\\Ecommerce_BE\\EcommerceBackend\\EcommerceBackend.csproj",
         "packagesPath": "C:\\Users\\leanh\\.nuget\\packages\\",
         "outputPath": "C:\\Ecommerce_BE\\Ecommerce_BE\\EcommerceBackend\\obj\\",
-=======
-    "d:\\Ecommerce_BE_FULL (1)\\EcommerceBackend\\EcommerceBackend.csproj": {}
-  },
-  "projects": {
-    "d:\\Ecommerce_BE_FULL (1)\\EcommerceBackend\\EcommerceBackend.csproj": {
-      "version": "1.0.0",
-      "restore": {
-        "projectUniqueName": "d:\\Ecommerce_BE_FULL (1)\\EcommerceBackend\\EcommerceBackend.csproj",
-        "projectName": "EcommerceBackend",
-        "projectPath": "d:\\Ecommerce_BE_FULL (1)\\EcommerceBackend\\EcommerceBackend.csproj",
-        "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-        "outputPath": "d:\\Ecommerce_BE_FULL (1)\\EcommerceBackend\\obj\\",
->>>>>>> 694753f4bc4b77d70d32e29868267471c483d283
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\leanh\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -67,7 +53,7 @@
             },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
-              "version": "[8.0.14, )"
+              "version": "[9.0.5, )"
             },
             "Microsoft.EntityFrameworkCore.Design": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
@@ -107,11 +93,7 @@
               "privateAssets": "all"
             }
           },
-<<<<<<< HEAD
           "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.408/PortableRuntimeIdentifierGraph.json"
-=======
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.410/PortableRuntimeIdentifierGraph.json"
->>>>>>> 694753f4bc4b77d70d32e29868267471c483d283
         }
       }
     }
