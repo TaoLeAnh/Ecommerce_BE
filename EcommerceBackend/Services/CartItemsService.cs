@@ -8,14 +8,24 @@ namespace EcommerceBackend.Services
     {
         private readonly UnitOfWork _unitOfWork;
 
-        public CartItemsService(UnitOfWork unitOfWork)
+        private readonly IProductService _productService;
+
+        public CartItemsService(UnitOfWork unitOfWork, IProductService productService)
         {
             _unitOfWork = unitOfWork;
+            _productService = productService;
         }
 
         public async Task<IEnumerable<CartItem>> GetCartItemsByUserId(string userId)
         {
-            return await _unitOfWork.CarItems.FindAsync(c => c.UserId == int.Parse(userId));
+
+            IEnumerable<CartItem> cartItems = await _unitOfWork.CarItems.FindAsync(c => c.UserId == int.Parse(userId));
+            foreach (CartItem cartItem in cartItems)
+            {
+                Product product = await _productService.GetProductById(cartItem.ProductId);
+                cartItem.Product = product;
+            }
+            return cartItems;
         }
 
         public async Task<CartItem> GetCartItemById(int id)
@@ -25,8 +35,21 @@ namespace EcommerceBackend.Services
 
         public async Task<CartItem> AddToCart(CartItem cartItem)
         {
-            var existingItem = await _unitOfWork.CarItems.FindAsync(c => c.UserId == cartItem.UserId && c.ProductId == cartItem.ProductId) ;
+            if (cartItem == null)
+                throw new ArgumentNullException(nameof(cartItem), "CartItem cannot be null!");
+
+            // Có thể cần check thêm:
+            if (cartItem.UserId == 0)
+                throw new ArgumentException("UserId is required and must be > 0!");
+            if (cartItem.ProductId == 0)
+                throw new ArgumentException("ProductId is required and must be > 0!");
+
+            var existingItem = await _unitOfWork.CarItems.FindAsync(
+                c => c.UserId == cartItem.UserId && c.ProductId == cartItem.ProductId
+            ) ?? new List<CartItem>();
+
             var item = existingItem.FirstOrDefault();
+
             if (item != null)
             {
                 item.Quantity += cartItem.Quantity;
@@ -40,6 +63,7 @@ namespace EcommerceBackend.Services
             await _unitOfWork.CompleteAsync();
             return item ?? cartItem;
         }
+
 
         public async Task UpdateCartItem(CartItem cartItem)
         {

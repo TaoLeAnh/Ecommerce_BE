@@ -59,5 +59,12 @@ namespace EcommerceBackend.Controllers
             await _productService.DeleteProduct(id);
             return NoContent();
         }
+        [HttpPost("search")]
+        public async Task<ActionResult<PagedResult<Product>>> SearchProducts([FromBody] ProductFilterDto filter)
+        {
+            var query = await _productService.FilterProducts(filter);
+            return Ok(query);
+        }
+
     }
 }

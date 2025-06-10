@@ -9,5 +9,6 @@ namespace EcommerceBackend.Services
         Task<Product> CreateProduct(Product product);
         Task UpdateProduct(Product product);
         Task DeleteProduct(int id);
+        Task<PagedResult<Product>> FilterProducts(ProductFilterDto filter);
     }
 }

@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
 namespace EcommerceBackend.Models
 {
@@ -18,9 +19,13 @@ namespace EcommerceBackend.Models
         public DateTime CreatedAt { get; set; }
 
         // Navigation properties
+        [JsonIgnore]
         public virtual Category? Category { get; set; }
+        [JsonIgnore]
         public virtual ICollection<OrderDetail>? OrderDetails { get; set; }
+         [JsonIgnore]
         public virtual ICollection<Review>? Reviews { get; set; }
+        [JsonIgnore]
         public virtual ICollection<CartItem>? CartItems { get; set; }
         
     }
