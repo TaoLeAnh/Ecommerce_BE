@@ -11,6 +11,6 @@ namespace EcommerceBackend.Models
         public DateTime CreatedAt { get; set; }
 
         // Navigation properties
-        public virtual ICollection<Product> Products { get; set; }
+        public virtual ICollection<Product>? Products { get; set; }
     }
 }

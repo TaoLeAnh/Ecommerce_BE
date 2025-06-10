@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Ecommerce_BE\\Ecommerce_BE\\EcommerceBackend\\EcommerceBackend.csproj": {}
+    "C:\\Ecommerce_BE\\EcommerceBackEnd\\EcommerceBackend.csproj": {}
   },
   "projects": {
-    "C:\\Ecommerce_BE\\Ecommerce_BE\\EcommerceBackend\\EcommerceBackend.csproj": {
+    "C:\\Ecommerce_BE\\EcommerceBackEnd\\EcommerceBackend.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Ecommerce_BE\\Ecommerce_BE\\EcommerceBackend\\EcommerceBackend.csproj",
+        "projectUniqueName": "C:\\Ecommerce_BE\\EcommerceBackEnd\\EcommerceBackend.csproj",
         "projectName": "EcommerceBackend",
-        "projectPath": "C:\\Ecommerce_BE\\Ecommerce_BE\\EcommerceBackend\\EcommerceBackend.csproj",
+        "projectPath": "C:\\Ecommerce_BE\\EcommerceBackEnd\\EcommerceBackend.csproj",
         "packagesPath": "C:\\Users\\leanh\\.nuget\\packages\\",
-        "outputPath": "C:\\Ecommerce_BE\\Ecommerce_BE\\EcommerceBackend\\obj\\",
+        "outputPath": "C:\\Ecommerce_BE\\EcommerceBackEnd\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\leanh\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -59,19 +59,21 @@
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
               "target": "Package",
-              "version": "[8.0.14, )"
+              "version": "[9.0.5, )"
             },
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
-              "version": "[8.0.14, )"
+              "version": "[9.0.5, )"
             },
             "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
               "target": "Package",
-              "version": "[8.0.14, )"
+              "version": "[9.0.5, )"
             },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
-              "version": "[6.6.2, )"
+              "version": "[8.1.4, )"
             }
           },
           "imports": [

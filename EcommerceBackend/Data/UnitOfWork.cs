@@ -13,8 +13,7 @@ namespace EcommerceBackend.Data
         public IGenericRepository<Review> Reviews { get; private set; }
         public IGenericRepository<OrderDetail> OrderDetails { get; private set; }
         public IGenericRepository<Payment> Payments { get; private set; }
-
-         public IGenericRepository<CartItem> CarItems { get; private set; }
+        public IGenericRepository<CartItem> CarItems { get; private set; }
 
         public UnitOfWork(ApplicationDbContext context)
         {
