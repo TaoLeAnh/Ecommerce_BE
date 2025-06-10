@@ -25,6 +25,7 @@ namespace EcommerceBackend.Data
             Reviews = new GenericRepository<Review>(context);
             OrderDetails = new GenericRepository<OrderDetail>(context);
             Payments = new GenericRepository<Payment>(context);
+            CarItems = new GenericRepository<CartItem>(context);
         }
 
         public async Task CompleteAsync()

@@ -46,7 +46,7 @@ namespace EcommerceBackend.Controllers
 
         [HttpPost]
         public async Task<IActionResult> AddToCart([FromBody] AddToCartRequest request)
-        {
+        {   
             var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
             if (userId == null)
                 return Unauthorized();
@@ -60,7 +60,7 @@ namespace EcommerceBackend.Controllers
             };
 
             var result = await _cartItemsService.AddToCart(cartItem);
-            return CreatedAtAction(nameof(GetCartItem), new { CartItemId = result.CartItemId }, result);
+            return CreatedAtAction(nameof(GetCartItem), new { id = result.CartItemId }, result);
         }
 
         [HttpPut("{id}")]
