@@ -65,6 +65,15 @@ namespace EcommerceBackend.Controllers
             var query = await _productService.FilterProducts(filter);
             return Ok(query);
         }
+        [HttpGet("{id}/also-viewed")]
+        public async Task<IActionResult> GetCustomerAlsoViewed(int id)
+        {
+            var currentProduct = await _allProducts
+                .Where(p => p.ProductId != id && p.CategoryId == currentProduct.CategoryId)
+                .Take(4)
+                .ToListAsync();
+            return Ok(relatedProducts);
+        }
 
     }
 }

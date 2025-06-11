@@ -62,14 +62,6 @@ builder.Services.AddCors(options =>
 });
 
 
-builder.Services.AddSwaggerGen(c =>
-{
-    c.SwaggerDoc("v1", new OpenApiInfo { Title = "Ecommerce API", Version = "v1" });
-    
-    c.OperationFilter<FileUploadOperationFilter>();
-    
-});
-
 builder.Services.Configure<FormOptions>(options =>
 {
     options.ValueLengthLimit = int.MaxValue;
@@ -100,5 +92,3 @@ app.UseCors("AllowSpecificOrigin");
 app.MapControllers();
 
 app.Run();
-
-

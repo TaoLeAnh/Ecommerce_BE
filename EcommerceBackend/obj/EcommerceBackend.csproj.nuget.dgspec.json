@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Ecommerce_BE_FULL (1)\\EcommerceBackend\\EcommerceBackend.csproj": {}
+    "C:\\Ecommerce_BE\\EcommerceBackEnd\\EcommerceBackend.csproj": {}
   },
   "projects": {
-    "D:\\Ecommerce_BE_FULL (1)\\EcommerceBackend\\EcommerceBackend.csproj": {
+    "C:\\Ecommerce_BE\\EcommerceBackEnd\\EcommerceBackend.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Ecommerce_BE_FULL (1)\\EcommerceBackend\\EcommerceBackend.csproj",
+        "projectUniqueName": "C:\\Ecommerce_BE\\EcommerceBackEnd\\EcommerceBackend.csproj",
         "projectName": "EcommerceBackend",
-        "projectPath": "D:\\Ecommerce_BE_FULL (1)\\EcommerceBackend\\EcommerceBackend.csproj",
-        "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-        "outputPath": "D:\\Ecommerce_BE_FULL (1)\\EcommerceBackend\\obj\\",
+        "projectPath": "C:\\Ecommerce_BE\\EcommerceBackEnd\\EcommerceBackend.csproj",
+        "packagesPath": "C:\\Users\\leanh\\.nuget\\packages\\",
+        "outputPath": "C:\\Ecommerce_BE\\EcommerceBackEnd\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\leanh\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
@@ -53,25 +53,27 @@
             },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
-              "version": "[8.0.14, )"
+              "version": "[9.0.5, )"
             },
             "Microsoft.EntityFrameworkCore.Design": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
               "target": "Package",
-              "version": "[8.0.14, )"
+              "version": "[9.0.5, )"
             },
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
-              "version": "[8.0.14, )"
+              "version": "[9.0.5, )"
             },
             "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
               "target": "Package",
-              "version": "[8.0.14, )"
+              "version": "[9.0.5, )"
             },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
-              "version": "[6.6.2, )"
+              "version": "[8.1.4, )"
             }
           },
           "imports": [
@@ -93,7 +95,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.410/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.408/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
