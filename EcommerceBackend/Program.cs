@@ -24,6 +24,7 @@ builder.Services.AddScoped<ITokenService, TokenService>();
 builder.Services.AddScoped<IPaymentService, PaymentService>();
 builder.Services.AddScoped<IReviewService, ReviewService>();
 builder.Services.AddScoped<ICartItemsService, CartItemsService>();
+builder.Services.AddScoped<IOrderService, OrderService>();
 
 // Add this line to register controllers
 builder.Services.AddControllers();
@@ -69,6 +70,12 @@ builder.Services.Configure<FormOptions>(options =>
     options.MultipartHeadersLengthLimit = int.MaxValue;
 });
 
+builder.Services.AddControllers()
+    .AddJsonOptions(options =>
+    {
+        options.JsonSerializerOptions.ReferenceHandler = System.Text.Json.Serialization.ReferenceHandler.Preserve;
+        options.JsonSerializerOptions.MaxDepth = 64; // tăng depth nếu cần
+    });
 
 var app = builder.Build();
 

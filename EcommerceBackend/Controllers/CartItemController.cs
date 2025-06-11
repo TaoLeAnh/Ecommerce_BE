@@ -95,6 +95,7 @@ namespace EcommerceBackend.Controllers
             return NoContent();
         }
 
+
         [HttpDelete]
         public async Task<IActionResult> ClearCart()
         {

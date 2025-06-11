@@ -9,6 +9,6 @@ namespace EcommerceBackend.Services
         Task<Order> CreateOrder(Order order);
         Task UpdateOrder(Order order);
         Task DeleteOrder(int id);
-        Task<Order> CreateOrderWithProducts(List<Product> products,String userId);
+        Task<Order> CreateOrderWithProducts(CreateOrderWithProductsRequest request);
     }
 }

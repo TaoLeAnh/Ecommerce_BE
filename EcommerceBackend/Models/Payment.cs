@@ -12,7 +12,6 @@ namespace EcommerceBackend.Models
         public string TransactionId { get; set; }
         public decimal PaidAmount { get; set; }
         public DateTime PaidAt { get; set; }
-
         // Navigation properties
         public virtual Order? Order { get; set; }
     }
