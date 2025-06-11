@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Models;
 using EcommerceBackend.Data;
+using System.Security.Claims;
 
 [Route("api/wishlist")]
 [ApiController]
@@ -15,10 +16,17 @@ public class WishlistItemController : ControllerBase
     }
 
     [HttpGet]
-    public async Task<IActionResult> GetWishlist([FromQuery] int userId)
+    public async Task<IActionResult> GetWishlist()
     {
+        var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+                 if (userId == null)
+                     return Unauthorized();
+
+                 // Parse userId safely
+                 if (!int.TryParse(userId, out int userIdInt))
+                     return BadRequest("Invalid user ID");
         var wishlist = await _context.WishlistItems
-            .Where(w => w.UserId == userId)
+            .Where(w => w.UserId == userIdInt)
             .Include(w => w.Product)
             .ToListAsync();
 
@@ -32,15 +40,23 @@ public class WishlistItemController : ControllerBase
     [HttpPost]
     public async Task<IActionResult> AddToWishlist([FromBody] WishlistAddRequest request)
     {
-        bool exists = await _context.WishlistItems
-            .AnyAsync(w => w.UserId == request.UserId && w.ProductId == request.ProductId);
+         var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+             if (userId == null)
+                 return Unauthorized();
+
+             // Parse userId safely
+             if (!int.TryParse(userId, out int userIdInt))
+                 return BadRequest("Invalid user ID");
+
+             bool exists = await _context.WishlistItems
+                 .AnyAsync(w => w.UserId == userIdInt && w.ProductId == request.ProductId);
 
         if (exists)
             return BadRequest("Product already in wishlist.");
 
         var item = new WishlistItem
         {
-            UserId = request.UserId,
+            UserId = userIdInt,
             ProductId = request.ProductId
         };
 
@@ -51,10 +67,17 @@ public class WishlistItemController : ControllerBase
     }
 
     [HttpDelete("{id}")]
-    public async Task<IActionResult> RemoveFromWishlist(int id, [FromQuery] int userId)
+    public async Task<IActionResult> RemoveFromWishlist(int id)
     {
+        var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+        if (userId == null)
+            return Unauthorized();
+
+        // Parse userId safely
+        if (!int.TryParse(userId, out int userIdInt))
+            return BadRequest("Invalid user ID");
         var item = await _context.WishlistItems
-            .FirstOrDefaultAsync(w => w.Id == id && w.UserId == userId);
+            .FirstOrDefaultAsync(w => w.Id == id && w.UserId == userIdInt);
 
         if (item == null) return NotFound();
 
@@ -65,10 +88,18 @@ public class WishlistItemController : ControllerBase
     }
 
     [HttpDelete]
-    public async Task<IActionResult> ClearWishlist([FromQuery] int userId)
+    public async Task<IActionResult> ClearWishlist()
     {
+        var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+                if (userId == null)
+                    return Unauthorized();
+
+                // Parse userId safely
+                if (!int.TryParse(userId, out int userIdInt))
+                    return BadRequest("Invalid user ID");
+
         var items = await _context.WishlistItems
-            .Where(w => w.UserId == userId)
+            .Where(w => w.UserId == userIdInt)
             .ToListAsync();
 
         _context.WishlistItems.RemoveRange(items);
@@ -78,7 +109,6 @@ public class WishlistItemController : ControllerBase
     }
     public class WishlistAddRequest
     {
-        public int UserId { get; set; }
         public int ProductId { get; set; }
     }
 }
