@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using EcommerceBackend.Services;
 using EcommerceBackend.Models;
+using System.Security.Claims;
 
 namespace EcommerceBackend.Controllers
 {
@@ -41,7 +42,12 @@ namespace EcommerceBackend.Controllers
         [HttpPost("with-products")]
         public async Task<IActionResult> CreateOrderWithProducts([FromBody] CreateOrderWithProductsRequest request)
         {
-            var createdOrder = await _orderService.CreateOrderWithProducts(request.Products, request.UserId);
+          var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+                    if (userId == null)
+                        return Unauthorized();
+                        
+            request.UserId = userId;
+            var createdOrder = await _orderService.CreateOrderWithProducts(request);
             return CreatedAtAction(nameof(GetOrderById), new { id = createdOrder.OrderId }, createdOrder);
         }
 
@@ -63,10 +69,4 @@ namespace EcommerceBackend.Controllers
         }
     }
 
-    // Request model for CreateOrderWithProducts
-    public class CreateOrderWithProductsRequest
-    {
-        public List<Product> Products { get; set; }
-        public string UserId { get; set; }
-    }
 }

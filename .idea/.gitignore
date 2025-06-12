@@ -11,7 +11,7 @@
 # Build results
 bin/
 obj/
-
+/EcommerceBackend/bin/
 # User-specific files
 *.user
 *.suo
