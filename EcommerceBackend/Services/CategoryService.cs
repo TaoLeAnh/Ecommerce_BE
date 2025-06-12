@@ -25,6 +25,7 @@ namespace EcommerceBackend.Services
 
         public async Task<Category> CreateAsync(Category category)
         {
+            category.CreatedAt = DateTime.UtcNow;
             await _unitOfWork.Categories.AddAsync(category);
             await _unitOfWork.CompleteAsync();
             return category;
@@ -37,7 +38,6 @@ namespace EcommerceBackend.Services
 
             existing.Name = category.Name;
             existing.Description = category.Description;
-            existing.CreatedAt = category.CreatedAt;
 
             _unitOfWork.Categories.Update(existing);
             await _unitOfWork.CompleteAsync();

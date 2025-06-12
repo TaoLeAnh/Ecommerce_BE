@@ -81,12 +81,12 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+// Enable CORS
+app.UseCors("AllowSpecificOrigin");
+
 // Enable authentication and authorization
 app.UseAuthentication();
 app.UseAuthorization();
-
-// Enable CORS
-app.UseCors("AllowSpecificOrigin");
 
 // Map controllers
 app.MapControllers();

@@ -7,6 +7,7 @@ using System.Security.Claims;
 namespace EcommerceBackend.Controllers
 {
     [ApiController]
+    [Authorize]
     [Route("api/reviews")]
     public class ReviewController : ControllerBase
     {
@@ -51,14 +52,14 @@ namespace EcommerceBackend.Controllers
             var review = new Review
             {
                 UserId = int.Parse(userId),
-                ProductId = request.ProductId,
+                ProductId = int.Parse(request.ProductId),
                 Rating = request.Rating,
                 Comment = request.Comment,
                 CreatedAt = DateTime.UtcNow
             };
 
             var createdReview = await _reviewService.CreateReview(review);
-            return CreatedAtAction(nameof(GetReviewById), new { ReviewId = createdReview.ReviewId }, createdReview);
+            return CreatedAtAction(nameof(GetReviewById), new { id = createdReview.ReviewId }, createdReview);
         }
 
         [Authorize]
@@ -105,8 +106,8 @@ namespace EcommerceBackend.Controllers
 
     public class ReviewRequest
     {
-        public int ProductId { get; set; }
-        public int Rating { get; set; }
+        public string ProductId { get; set; }
+        public float Rating { get; set; }
         public string? Comment { get; set; }
     }
 } 

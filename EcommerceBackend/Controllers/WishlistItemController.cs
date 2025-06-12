@@ -3,8 +3,10 @@ using Microsoft.EntityFrameworkCore;
 using Models;
 using EcommerceBackend.Data;
 using System.Security.Claims;
+using Microsoft.AspNetCore.Authorization;
 
 [Route("api/wishlist")]
+[Authorize]
 [ApiController]
 public class WishlistItemController : ControllerBase
 {

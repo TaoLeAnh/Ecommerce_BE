@@ -1,5 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using EcommerceBackend.Services;
+using EcommerceBackend.Data;
+using Microsoft.EntityFrameworkCore;
 using EcommerceBackend.Models;
 
 namespace EcommerceBackend.Controllers
@@ -9,10 +11,12 @@ namespace EcommerceBackend.Controllers
     public class ProductController : ControllerBase
     {
         private readonly IProductService _productService;
+        private readonly ApplicationDbContext _context;
 
-        public ProductController(IProductService productService)
+        public ProductController(IProductService productService, ApplicationDbContext context)
         {
             _productService = productService;
+            _context = context;
         }
 
         [HttpGet]
@@ -68,7 +72,11 @@ namespace EcommerceBackend.Controllers
         [HttpGet("{id}/also-viewed")]
         public async Task<IActionResult> GetCustomerAlsoViewed(int id)
         {
-            var currentProduct = await _allProducts
+            var currentProduct = await _context.Products.FirstOrDefaultAsync(p => p.ProductId == id);
+            if (currentProduct == null)
+                return NotFound("Sản phẩm không tồn tại");
+
+            var relatedProducts = await _context.Products
                 .Where(p => p.ProductId != id && p.CategoryId == currentProduct.CategoryId)
                 .Take(4)
                 .ToListAsync();
