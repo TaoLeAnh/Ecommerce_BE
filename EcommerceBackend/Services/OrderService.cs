@@ -77,7 +77,7 @@ namespace EcommerceBackend.Services
                 Note = request.Note,
                 ShipCost = request.ShipCost,
                 GrandTotal = request.GrandTotal,
-                TotalAmount = request.Products.Sum(p => p.Price * p.Quantity), // tổng sản phẩm
+                TotalAmount = request.Products.Sum(p => p.Price * p.Quantity),
                 OrderStatus = "PENDING",
                 CreatedAt = DateTime.UtcNow,
                 OrderDetails = request.Products.Select(p => new OrderDetail
@@ -90,13 +90,20 @@ namespace EcommerceBackend.Services
             };
 
             await _unitOfWork.Orders.AddAsync(order);
+            await _unitOfWork.CompleteAsync(); // cần để có OrderId trước khi gắn vào Payment
+
+            var payment = new Payment
+            {
+                OrderId = order.OrderId,
+                PaidAmount = request.GrandTotal
+            };
+
+            await _unitOfWork.Payments.AddAsync(payment);
             await _unitOfWork.CompleteAsync();
-
-
-
 
             return order;
         }
+
 
     }
 }

@@ -11,9 +11,12 @@ namespace EcommerceBackend.Controllers
     {
         private readonly IOrderService _orderService;
 
-        public OrdersController(IOrderService orderService)
+        private readonly IPaymentService _paymentService;
+
+        public OrdersController(IOrderService orderService, IPaymentService paymentService)
         {
             _orderService = orderService;
+             _paymentService = paymentService;
         }
 
         [HttpGet]
@@ -65,6 +68,24 @@ namespace EcommerceBackend.Controllers
         public async Task<IActionResult> DeleteOrder(int id)
         {
             await _orderService.DeleteOrder(id);
+            return NoContent();
+        }
+
+       [HttpPut("update-method")]
+        public async Task<IActionResult> UpdatePaymentMethod([FromQuery] int orderId, [FromQuery] string paymentMethod)
+        {
+            var order = await _orderService.GetOrderById(orderId);
+            if (order == null)
+                return NotFound("Order not found");
+
+            var payment = order.Payments?.FirstOrDefault();
+            if (payment == null)
+                return NotFound("Payment not found for this order");
+
+            payment.PaymentMethod = paymentMethod;
+            payment.PaymentStatus = "PENDING";
+            await _paymentService.UpdatePayment(payment);
+
             return NoContent();
         }
     }
