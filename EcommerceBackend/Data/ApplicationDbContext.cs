@@ -30,7 +30,7 @@ namespace EcommerceBackend.Data
                 .Property(p => p.PaidAmount)
                 .HasColumnType("decimal(18,2)");
 
-            // Configure Product
+           // Configure Product
             modelBuilder.Entity<Product>()
                 .Property(p => p.Price)
                 .HasColumnType("decimal(18,2)");

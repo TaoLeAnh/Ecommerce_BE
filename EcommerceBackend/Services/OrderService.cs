@@ -19,7 +19,30 @@ namespace EcommerceBackend.Services
 
         public async Task<Order> GetOrderById(int id)
         {
-            return await _unitOfWork.Orders.GetByIdAsync(id);
+            var order = await _unitOfWork.Orders.GetByIdAsync(id);
+            if (order == null) return null;
+
+            // Get OrderDetails
+            var orderDetails = await _unitOfWork.OrderDetails
+                .FindAsync(od => od.OrderId == id);
+
+            foreach (var detail in orderDetails)
+            {
+                var product = await _unitOfWork.Products.GetByIdAsync(detail.ProductId);
+                detail.Product = product;
+            }
+
+            order.OrderDetails = orderDetails.ToList();
+
+            // Get Payment
+            var payments = await _unitOfWork.Payments
+                .FindAsync(p => p.OrderId == id);
+
+           var user = await _unitOfWork.Users
+                        .FindAsync(p => p.UserId == order.UserId);
+
+            order.Payments = payments.ToList();
+            return order;
         }
 
         public async Task<Order> CreateOrder(Order order)

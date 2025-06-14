@@ -73,8 +73,10 @@ builder.Services.Configure<FormOptions>(options =>
 builder.Services.AddControllers()
     .AddJsonOptions(options =>
     {
-        options.JsonSerializerOptions.ReferenceHandler = System.Text.Json.Serialization.ReferenceHandler.Preserve;
+        options.JsonSerializerOptions.ReferenceHandler = System.Text.Json.Serialization.ReferenceHandler.IgnoreCycles;
         options.JsonSerializerOptions.MaxDepth = 64; // tăng depth nếu cần
+        options.JsonSerializerOptions.WriteIndented = true; // cho dễ nhìn, có thể bỏ
+
     });
 
 var app = builder.Build();
