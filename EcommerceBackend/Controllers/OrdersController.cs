@@ -88,6 +88,43 @@ namespace EcommerceBackend.Controllers
 
             return NoContent();
         }
-    }
+
+        private static readonly Dictionary<string, string> StatusFlow = new()
+        {
+            { "pending", "waiting payment" },
+            { "waiting payment", "confirm" },
+            { "confirm", "doing" },
+            { "doing", "shipping" },
+            { "shipping", "done" }
+        };
+
+        [HttpPut("update-status")]
+        public async Task<IActionResult> UpdateOrderStatus([FromQuery] int orderId)
+        {
+            var order = await _orderService.GetOrderById(orderId);
+            if (order == null)
+                return NotFound("Order not found");
+
+            var currentStatus = order.OrderStatus?.ToLower();
+
+            if (currentStatus == "pending")
+            {
+                var paymentMethod = order.Payments?.FirstOrDefault()?.PaymentMethod?.ToLower();
+                if (paymentMethod == "cash")
+                {
+                    order.OrderStatus = "CONFIRM";
+                    await _orderService.UpdateOrder(order);
+                    return NoContent();
+                }
+            }
+
+            if (!StatusFlow.TryGetValue(currentStatus, out var nextStatus))
+                return BadRequest($"No next status for current status: {currentStatus}");
+
+            order.OrderStatus = nextStatus.ToUpper();
+            await _orderService.UpdateOrder(order);
+
+            return NoContent();
+        }
 
 }
