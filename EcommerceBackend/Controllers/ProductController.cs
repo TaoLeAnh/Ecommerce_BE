@@ -83,5 +83,15 @@ namespace EcommerceBackend.Controllers
             return Ok(relatedProducts);
         }
 
+        [HttpGet("category/{categoryId}")]
+        public async Task<IActionResult> GetByCategory(int categoryId)
+        {
+            var products = await _context.products
+                .Include(p => p.Category)
+                .Where(p => p.categoryId == categoryId);
+                .ToListAsync();
+            return Ok(products);
+        }
+
     }
 }
